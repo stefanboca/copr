@@ -4,7 +4,7 @@
 # https://github.com/junegunn/fzf
 %global goipath         github.com/junegunn/fzf
 Version:                0.52.1
-%global tag             0.52.1
+%global tag             %{version}
 
 %gometa -L -f
 
@@ -15,7 +15,7 @@ Version:                0.52.1
 %global godocs          doc ADVANCED.md BUILD.md CHANGELOG.md README-VIM.md\\\
                         README.md
 
-Name:           golang-github-junegunn-fzf
+Name:           fzf
 Release:        %autorelease
 Summary:        :cherry_blossom: A command-line fuzzy finder
 
