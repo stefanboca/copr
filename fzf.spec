@@ -35,12 +35,38 @@ Source:         %{gosource}
 %go_generate_buildrequires
 
 %build
+export LDFLAGS='-X main.version=%{version} -X main.revision=Fedora '
 %gobuild -o %{gobuilddir}/bin/fzf %{goipath}
+
+# Cleanup interpreters
+sed -i -e '/^#!\//, 1d' shell/completion.*
+sed -i -e '1d;2i#!/bin/bash' bin/fzf-tmux
 
 %install
 %gopkginstall
-install -m 0755 -vd                     %{buildroot}%{_bindir}
-install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
+install -vdm 0755 %{buildroot}%{_bindir}
+install -vDpm 0755 %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
+install -Dpm0755 bin/fzf-tmux %{buildroot}%{_bindir}/
+install -d -p %{buildroot}%{_mandir}/man1
+install -Dpm0644 man/man1/*.1 %{buildroot}%{_mandir}/man1/
+
+install -d %{buildroot}%{_datadir}/fzf
+	
+# Install vim plugin
+install -d %{buildroot}%{_datadir}/vim/vimfiles/plugin
+install -Dpm0644 plugin/fzf.vim %{buildroot}%{_datadir}/vim/vimfiles/plugin/
+install -d %{buildroot}%{_datadir}/nvim/site/plugin
+install -Dpm0644 plugin/fzf.vim %{buildroot}%{_datadir}/nvim/site/plugin/
+	
+# Install shell completion
+install -d %{buildroot}%{_sysconfdir}/bash_completion.d/
+install -Dpm0644 shell/completion.bash %{buildroot}%{_sysconfdir}/bash_completion.d/fzf
+install -d %{buildroot}%{_datadir}/zsh/site-functions
+install -Dpm0644 shell/completion.zsh %{buildroot}%{_datadir}/zsh/site-functions/fzf
+	
+# Install shell key bindings (not enabled)
+install -d %{buildroot}%{_datadir}/fzf/shell
+install -Dpm0644 shell/key-bindings.* %{buildroot}%{_datadir}/fzf/shell/
 
 %if %{with check}
 %check
@@ -50,8 +76,19 @@ install -m 0755 -vp %{gobuilddir}/bin/* %{buildroot}%{_bindir}/
 %files
 %license LICENSE src/LICENSE
 %doc doc ADVANCED.md BUILD.md CHANGELOG.md README-VIM.md README.md
-%{_bindir}/*
-
+%{_bindir}/fzf
+%{_bindir}/fzf-tmux
+%{_mandir}/man1/fzf.1*
+%{_mandir}/man1/fzf-tmux.1*
+%dir %{_datadir}/fzf
+%{_datadir}/fzf/shell
+%dir %{_datadir}/zsh/site-functions
+%{_datadir}/zsh/site-functions/fzf
+%dir %{_datadir}/vim/vimfiles/plugin
+%{_datadir}/vim/vimfiles/plugin/fzf.vim
+%dir %{_datadir}/nvim/site/plugin
+%{_datadir}/nvim/site/plugin/fzf.vim
+%{_sysconfdir}/bash_completion.d/fzf
 %gopkgfiles
 
 %changelog
