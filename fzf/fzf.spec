@@ -16,7 +16,7 @@ Version:                0.52.1
                         README.md
 
 Name:           fzf
-Release:        %autorelease
+Release:        %autorelease -b 2
 Summary:        :cherry_blossom: A command-line fuzzy finder
 
 License:        MIT
