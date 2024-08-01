@@ -3,7 +3,7 @@
 
 # https://github.com/charlievieth/fastwalk
 %global goipath         github.com/charlievieth/fastwalk
-Version:                1.0.3
+Version:                1.0.8
 
 %gometa -L -f
 
