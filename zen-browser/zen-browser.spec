@@ -6,7 +6,7 @@
 
 Name:               zen-browser
 Version:            1.0.2.b.2
-Release:            4%{?dist}
+Release:            5%{?dist}
 Summary:            Zen Browser
 
 License:            MPLv2.0
@@ -22,7 +22,7 @@ Requires(post):     gtk-update-icon-cache
 Conflicts:          zen-browser-avx2
 
 %description
-Zen Browser
+Zen Browser - AVX2
 
 %prep
 %setup -q -n zen

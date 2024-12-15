@@ -6,7 +6,7 @@
 
 Name:               zen-twilight
 Version:            1.0.2.t.3
-Release:            4%{?dist}
+Release:            5%{?dist}
 Summary:            Zen Browser (Twilight)
 
 License:            MPLv2.0
@@ -22,7 +22,7 @@ Requires(post):     gtk-update-icon-cache
 Conflicts:          zen-twilight-avx2
 
 %description
-Zen Browser
+Zen Browser Twilight - AVX2
 
 %prep
 %setup -q -n zen
