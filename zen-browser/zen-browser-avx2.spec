@@ -21,4 +21,4 @@ Conflicts:          zen-browser
 %description
 Zen Browser
 
-%include zen-common.spec
+%include ./zen-common.spec
