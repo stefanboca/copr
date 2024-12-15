@@ -1,0 +1,53 @@
+#!/usr/bin/bash
+##
+## Variables
+##
+MOZ_LIB_DIR="__LIB_DIR__"
+MOZ_FIREFOX_FILE="zen"
+MOZ_DIST_BIN="$MOZ_LIB_DIR/__APP_NAME__"
+MOZ_PROGRAM="$MOZ_DIST_BIN/$MOZ_FIREFOX_FILE"
+
+##
+## Use D-Bus remote exclusively when there's Wayland display.
+##
+if [ "$WAYLAND_DISPLAY" ]; then
+  export MOZ_DBUS_REMOTE=1
+fi
+
+##
+## Set MOZ_APP_LAUNCHER for gnome-session
+##
+export MOZ_APP_LAUNCHER="$0"
+
+##
+## Disable the GNOME crash dialog, Moz has it's own
+##
+GNOME_DISABLE_CRASH_DIALOG=1
+export GNOME_DISABLE_CRASH_DIALOG
+
+##
+## Disable the SLICE allocator (rhbz#1014858)
+##
+export G_SLICE=always-malloc
+
+##
+## Enable Xinput2 (mozbz#1207973)
+##
+export MOZ_USE_XINPUT2=${MOZ_USE_XINPUT2-1}
+
+# MOZ_APP_REMOTINGNAME links Firefox with desktop file name
+if [ -z "$MOZ_APP_REMOTINGNAME" ]; then
+  export MOZ_APP_REMOTINGNAME=__APP_NAME__
+fi
+
+# MOZ_DBUS_APP_NAME sets app name for DBus services like Gnome Shell
+# search provider or remote launcher
+# DBus interface name (or prefix) is org.mozilla.MOZ_DBUS_APP_NAME
+if [ -z "$MOZ_DBUS_APP_NAME" ]; then
+  export MOZ_DBUS_APP_NAME=zen
+fi
+
+# Don't throw "old profile" dialog box.
+export MOZ_ALLOW_DOWNGRADE=1
+
+exec $MOZ_PROGRAM "$@"
