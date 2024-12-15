@@ -4,7 +4,7 @@
 
 Name:               zen-browser-avx2
 Version:            1.0.2.b.2
-Release:            1%{?dist}
+Release:            2%{?dist}
 Summary:            Zen Browser
 
 License:            MPLv2.0

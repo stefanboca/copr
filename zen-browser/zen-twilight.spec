@@ -4,7 +4,7 @@
 
 Name:               zen-twilight
 Version:            1.0.2.t.3
-Release:            1%{?dist}
+Release:            2%{?dist}
 Summary:            Zen Browser (Twilight)
 
 License:            MPLv2.0
