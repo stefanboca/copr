@@ -12,12 +12,12 @@
 
 %__cp -r * %{buildroot}%{appdir}
 
-sed -e 's@__LIB_DIR__@%{_libdir}@g' %{SOURCE1} > %{full_name}.desktop
+sed -e 's@__LIB_DIR__@%{_libdir}@g' %{SOURCE2} > %{full_name}.desktop
 %__install -D -m 0644 %{full_name}.desktop -t %{buildroot}%{_datadir}/applications
 
-%__install -D -m 0444 %{SOURCE2} -t %{buildroot}%{appdir}/distribution
+%__install -D -m 0444 %{SOURCE3} -t %{buildroot}%{appdir}/distribution
 
-sed -e 's@__LIB_DIR__@%{_libdir}@g' -e 's@__APP_NAME__@%{application_name}@g' -e 's@__FULL_NAME__@%{full_name}@g' %{SOURCE3} > %{full_name}.sh
+sed -e 's@__LIB_DIR__@%{_libdir}@g' -e 's@__APP_NAME__@%{application_name}@g' -e 's@__FULL_NAME__@%{full_name}@g' %{SOURCE4} > %{full_name}.sh
 %__install -D -m 0755 %{full_name}.sh -T %{buildroot}%{_bindir}/%{full_name}
 
 for s in 16 32 48 64 128; do

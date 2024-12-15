@@ -9,9 +9,10 @@ Summary:            Zen Browser (Twilight)
 License:            MPLv2.0
 URL:                https://github.com/zen-browser/desktop
 Source0:            https://github.com/zen-browser/desktop/releases/download/twilight/zen.linux-generic.tar.bz2
-Source1:            %{full_name}.desktop.in
-Source2:            policies.json
-Source3:            zen-browser.sh.in
+Source1:            zen-common.spec
+Source2:            %{full_name}.desktop.in
+Source3:            policies.json
+Source4:            zen-browser.sh.in
 
 ExclusiveArch:      x86_64
 
@@ -21,4 +22,4 @@ Conflicts:          zen-twilight-avx2
 %description
 Zen Browser
 
-%include ./zen-common.spec
+%include %{SOURCE1}
