@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Zen Browser (Twilight)
 Comment=Experience tranquillity while browsing the web without people tracking you!
-Exec=/opt/zen/zen-twilight/zen-bin %u
+Exec=/opt/zen-twilight/zen-bin %u
 Icon=zen-twilight
 Type=Application
 MimeType=text/html;text/xml;application/xhtml+xml;x-scheme-handler/http;x-scheme-handler/https;application/x-xpinstall;application/pdf;application/json;
