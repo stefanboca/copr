@@ -5,8 +5,8 @@
 %global             appdir %{_libdir}/%{application_name}
 
 Name:               zen-twilight
-Version:            1.0.2.t.3
-Release:            5%{?dist}
+Version:            1.0.2.t.4
+Release:            1%{?dist}
 Summary:            Zen Browser (Twilight)
 
 License:            MPLv2.0
