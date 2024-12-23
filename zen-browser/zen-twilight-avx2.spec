@@ -5,7 +5,7 @@
 %global             appdir %{_libdir}/%{application_name}
 
 Name:               zen-twilight-avx2
-Version:            1.0.2.t.4
+Version:            1.0.2.t.5
 Release:            1%{?dist}
 Summary:            Zen Browser (Twilight)
 
