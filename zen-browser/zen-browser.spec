@@ -5,13 +5,13 @@
 %global             appdir %{_libdir}/%{application_name}
 
 Name:               zen-browser
-Version:            1.0.2.b.3
+Version:            1.0.2.b.4
 Release:            1%{?dist}
 Summary:            Zen Browser
 
 License:            MPLv2.0
 URL:                https://github.com/zen-browser/desktop
-Source0:            https://github.com/zen-browser/desktop/releases/download/1.0.2-b.3/zen.linux-generic.tar.bz2
+Source0:            https://github.com/zen-browser/desktop/releases/download/1.0.2-b.4/zen.linux-generic.tar.bz2
 Source1:            %{full_name}.desktop.in
 Source2:            policies.json
 Source3:            zen-browser.sh.in
