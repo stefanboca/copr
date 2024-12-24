@@ -38,19 +38,16 @@ jobs:
           ZEN_VER_SPEC=$(echo $ZEN_VER | sed 's@-@.@g')
           echo zen $ZEN_VER $ZEN_VER_SPEC
 
-          # Update zen-browser.spec and zen-browser-avx2.spec
+          # Update zen-browser.spec
           reset_release_if_version_changed "/home/runner/work/copr/copr/zen-browser/zen-browser.spec" $ZEN_VER_SPEC
-          reset_release_if_version_changed "/home/runner/work/copr/copr/zen-browser/zen-browser-avx2.spec" $ZEN_VER_SPEC
           # Update the source URL
           sed -i 's@https://github.com/zen-browser/desktop/releases/download/.*@https://github.com/zen-browser/desktop/releases/download/'$ZEN_VER'/zen.linux-generic.tar.bz2@g' /home/runner/work/copr/copr/zen-browser/zen-browser.spec
-          sed -i 's@https://github.com/zen-browser/desktop/releases/download/.*@https://github.com/zen-browser/desktop/releases/download/'$ZEN_VER'/zen.linux-specific.tar.bz2@g' /home/runner/work/copr/copr/zen-browser/zen-browser-avx2.spec
 
-          # Update zen-twilight.spec and zen-twilight-avx2.spec
+          # Update zen-twilight.spec
           ZEN_TWILIGHT_VER=$(jq -r '.[] | select(.tag_name == "twilight") | .name' releases.txt | sed -E 's/.* - ([0-9]+(\.[0-9]+)*(-[a-zA-Z0-9\.]+)?) .*/\1/')
           ZEN_TWILIGHT_VER_SPEC=$(echo $ZEN_TWILIGHT_VER | sed 's@-@.@g')
           echo twilight $ZEN_TWILIGHT_VER $ZEN_TWILIGHT_VER_SPEC
           reset_release_if_version_changed "/home/runner/work/copr/copr/zen-browser/zen-twilight.spec" $ZEN_TWILIGHT_VER_SPEC
-          reset_release_if_version_changed "/home/runner/work/copr/copr/zen-browser/zen-twilight-avx2.spec" $ZEN_TWILIGHT_VER_SPEC
 
           rm releases.txt
 
