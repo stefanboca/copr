@@ -19,7 +19,7 @@ jobs:
 
       - name: update zen version
         run: |
-          reset_release_if_version_changed() {
+          update_spec_version() {
             SPEC_FILE=$1
             # Copr doesn't like using dashes for the version, so we have to manually change it to something it likes but keep it the same for
             # the source repo.
@@ -37,14 +37,14 @@ jobs:
           # Update zen-browser.spec
           ZEN_VER=$(echo "$RELEASES" | jq -r 'first(.[].tag_name | select(test("^[0-9]")))')
           echo zen $ZEN_VER
-          reset_release_if_version_changed "/home/runner/work/copr/copr/zen-browser/zen-browser.spec" $ZEN_VER
+          update_spec_version "/home/runner/work/copr/copr/zen-browser/zen-browser.spec" $ZEN_VER
           # Update the source URL
           sed -i 's@https://github.com/zen-browser/desktop/releases/download/.*@https://github.com/zen-browser/desktop/releases/download/'$ZEN_VER'/zen.linux-x86_64.tar.bz2@g' /home/runner/work/copr/copr/zen-browser/zen-browser.spec
 
           # Update zen-twilight.spec
           ZEN_TWILIGHT_VER=$(echo "$RELEASES" | jq -r '.[] | select(.tag_name == "twilight") | .name' | grep -Eo '[0-9]+(\.[a-zA-Z0-9]+)+')
           echo twilight $ZEN_TWILIGHT_VER
-          reset_release_if_version_changed "/home/runner/work/copr/copr/zen-browser/zen-twilight.spec" $ZEN_TWILIGHT_VER
+          update_spec_version "/home/runner/work/copr/copr/zen-browser/zen-twilight.spec" $ZEN_TWILIGHT_VER
 
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
