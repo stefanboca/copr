@@ -16,6 +16,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: "main"
+          persist-credentials: true
 
       - name: update zen version
         run: |
