@@ -5,7 +5,7 @@
 %global             appdir %{_libdir}/%{application_name}
 
 Name:               zen-twilight
-Version:            1.7t
+Version:            1.6t.1
 Release:            1%{?dist}
 Summary:            Zen Browser (Twilight)
 
