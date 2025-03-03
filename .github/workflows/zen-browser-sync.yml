@@ -40,7 +40,7 @@ jobs:
           echo zen $ZEN_VER
           update_spec_version "/home/runner/work/copr/copr/zen-browser/zen-browser.spec" $ZEN_VER
           # Update the source URL
-          sed -i 's@https://github.com/zen-browser/desktop/releases/download/.*@https://github.com/zen-browser/desktop/releases/download/'$ZEN_VER'/zen.linux-x86_64.tar.bz2@g' /home/runner/work/copr/copr/zen-browser/zen-browser.spec
+          sed -i 's@https://github.com/zen-browser/desktop/releases/download/.*@https://github.com/zen-browser/desktop/releases/download/'$ZEN_VER'/zen.linux-x86_64.tar.xz@g' /home/runner/work/copr/copr/zen-browser/zen-browser.spec
 
           # Update zen-twilight.spec
           ZEN_TWILIGHT_VER=$(echo "$RELEASES" | jq -r '.[] | select(.tag_name == "twilight") | .name' | grep -Eo '[0-9]+(\.[a-zA-Z0-9-]+)+')
